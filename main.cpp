@@ -22,6 +22,7 @@ template <typename T>
 void vecToFile(string path, vector<T> vec, bool log = false)
 {
   ofstream file;
+
   if (log)
   {
     cout << "Writing to " << path << endl;
@@ -39,15 +40,18 @@ int main()
   srand(time(0));
   ofstream file;
 
-  int N = 100;
+  Fourier::DFT dft;
+
+  int N = 1000;
   int nF = 1;
+  int div = 10;
   vector<double> oFreq = {};
-  for (int i = 0; i < N / 2; i++)
+  for (int i = 0; i < N / div; i++)
   {
     if (i >= nF)
     {
       oFreq.push_back(1);
-      nF = rand() % (N / 2 - 1) + i + 1;
+      nF = rand() % (N / div - 1) + i + 1;
     }
     else
     {
@@ -61,7 +65,8 @@ int main()
     double x = f / N;
     inp.push_back(sample(x, oFreq));
   }
-  vector<complex<double>> freq = fourier::transform(inp);
+
+  vector<complex<double>> freq = dft.transform(inp);
   vector<double> realFreq = {};
   vector<double> imagFreq = {};
 
@@ -76,46 +81,7 @@ int main()
   vecToFile("ext_real_freq.txt", realFreq, true);
   vecToFile("ext_imag_freq.txt", imagFreq, true);
   vecToFile("inp.txt", inp, true);
-  vecToFile("ext_complex_inv.txt", fourier::inv(freq), true);
+  vecToFile("ext_complex_inv.txt", dft.inv(freq), true);
 
-  // cout << "Writing to ext_complex_freq" << endl;
-  // file.open("ext_complex_freq.txt");
-  // for (complex<double> f : freq)
-  // {
-  //   file << "complex(" << real(f) << ", " << imag(f) << ")" << endl;
-  // }
-  // file.close();
-
-  // cout << "Writing to ext_real_freq" << endl;
-  // file.open("ext_real_freq.txt");
-  // for (complex<double> f : freq)
-  // {
-  //   file << real(f) << endl;
-  // }
-  // file.close();
-
-  // cout << "Writing to ext_imag_freq" << endl;
-  // file.open("ext_imag_freq.txt");
-  // for (complex<double> f : freq)
-  // {
-  //   file << imag(f) << endl;
-  // }
-  // file.close();
-
-  // cout << "Writing to inp" << endl;
-  // file.open("inp.txt");
-  // for (double y : inp)
-  // {
-  //   file << y << endl;
-  // }
-  // file.close();
-
-  // cout << "Writing to ext_complex_inv" << endl;
-  // file.open("ext_complex_inv.txt");
-  // for (complex<double> z : inv(freq))
-  // {
-  //   file << z << endl;
-  // }
-  // file.close();
   return 0;
 }

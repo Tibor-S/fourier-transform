@@ -1,37 +1,29 @@
-#include <iostream>
-#include <fstream>
 #include <vector>
 #include <complex>
-#define _USE_MATH_DEFINES
-#include <math.h>
 #include "dft.h"
 
 using namespace std;
-using namespace fourier;
-complex<double> IM = (0, 1);
+using namespace Fourier;
 
-vector<complex<double>> fourier::transform(vector<double> inp)
+vector<complex<double>> DFT::transform(vector<double> inp)
 {
   vector<complex<double>> freq = {};
-  int N = inp.size();
+  double N = inp.size();
   for (int k = 0; k < N; k++)
   {
-    if (k % 100 == 0)
-    {
-      cout << "k = " << k << endl;
-    }
     complex<double> sum = 0;
     for (int n = 0; n < N; n++)
     {
-      sum += complex<double>(inp[n], 0) * exp(-IM * complex<double>(2 * M_PI * k * n / N, 0));
+      complex<double> amp(inp[n], 0);
+      complex<double> arg(2 * k * n / N, 0);
+      sum += amp * exp(-IM * PI * arg);
     }
-    freq.push_back(sum /*/ complex<double>(N, 0)*/);
+    freq.push_back(sum);
   }
-
   return freq;
 }
 
-vector<complex<double>> fourier::inv(vector<complex<double>> inp)
+vector<complex<double>> DFT::inv(vector<complex<double>> inp)
 {
   vector<complex<double>> bin = {};
   int N = inp.size();
@@ -42,7 +34,8 @@ vector<complex<double>> fourier::inv(vector<complex<double>> inp)
     complex<double> sum = 0;
     for (int k = 0; k < N; k++)
     {
-      sum += inp[k] * exp(IM * complex<double>(2 * M_PI * k * n / N, 0));
+      complex<double> arg(2 * M_PI * k * n / N, 0);
+      sum += inp[k] * exp(IM * arg);
     }
 
     bin.push_back(sum / complex<double>(N, 0));
