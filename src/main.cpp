@@ -5,7 +5,10 @@
 #define _USE_MATH_DEFINES
 #include <math.h>
 #include "dft.h"
+#include "audioin.h"
+#include "ext.h"
 using namespace std;
+using namespace Fourier;
 
 double sample(double x, vector<double> freq)
 {
@@ -16,23 +19,6 @@ double sample(double x, vector<double> freq)
   }
 
   return s;
-}
-
-template <typename T>
-void vecToFile(string path, vector<T> vec, bool log = false)
-{
-  ofstream file;
-
-  if (log)
-  {
-    cout << "Writing to " << path << endl;
-  }
-  file.open(path);
-  for (T el : vec)
-  {
-    file << el << endl;
-  }
-  file.close();
 }
 
 int main()
@@ -76,12 +62,14 @@ int main()
     imagFreq.push_back(imag(f));
   }
 
-  vecToFile("org_freq.txt", oFreq, true);
-  vecToFile("ext_complex_freq.txt", freq, true);
-  vecToFile("ext_real_freq.txt", realFreq, true);
-  vecToFile("ext_imag_freq.txt", imagFreq, true);
-  vecToFile("inp.txt", inp, true);
-  vecToFile("ext_complex_inv.txt", dft.inv(freq), true);
+  vecToFile("org_freq.txt", oFreq);
+  vecToFile("ext_complex_freq.txt", freq);
+  vecToFile("ext_real_freq.txt", realFreq);
+  vecToFile("ext_imag_freq.txt", imagFreq);
+  vecToFile("inp.txt", inp);
+  vecToFile("ext_complex_inv.txt", dft.inv(freq));
+
+  cout << micin();
 
   return 0;
 }

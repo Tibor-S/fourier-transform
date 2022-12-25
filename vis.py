@@ -17,12 +17,24 @@ with open("ext_complex_inv.txt") as f:
                    for freq in f.readlines()]
     f.close()
 
-N = len(inp)
-X = [x / N for x in range(0, N)]
+with open("raudioin.txt") as f:
+    raudioin = [float(freq) for freq in f.readlines()]
+    f.close()
+with open("laudioin.txt") as f:
+    laudioin = [float(freq) for freq in f.readlines()]
+    f.close()
 
+# N = len(inp)
+# X = [x / N for x in range(0, N)]
+
+# fig, axis = plt.subplots(2, 1)
+# axis[0].plot(X, inp)
+# axis[0].set_title("in")
+# axis[1].plot(X, complex_inv)
+# axis[1].set_title("out")
 fig, axis = plt.subplots(2, 1)
-axis[0].plot(X, inp)
-axis[0].set_title("in")
-axis[1].plot(X, complex_inv)
-axis[1].set_title("out")
+axis[0].plot(laudioin)
+axis[0].set_title("Left")
+axis[1].plot(raudioin)
+axis[1].set_title("Right")
 plt.show()

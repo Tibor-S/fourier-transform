@@ -1,0 +1,5 @@
+
+namespace Fourier
+{
+  int micin();
+}
