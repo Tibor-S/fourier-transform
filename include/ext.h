@@ -3,7 +3,7 @@
 #include <fstream>
 #include <iostream>
 
-namespace Fourier
+namespace Oscilloscope
 {
   template <typename T>
   void vecToFile(std::string path, std::vector<T> vec)

@@ -1,5 +1,5 @@
 
-namespace Fourier
+namespace Oscilloscope
 {
   int micin();
 }

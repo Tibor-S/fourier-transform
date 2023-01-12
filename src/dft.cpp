@@ -3,7 +3,7 @@
 #include "dft.h"
 
 using namespace std;
-using namespace Fourier;
+using namespace Oscilloscope;
 
 vector<complex<double>> DFT::transform(vector<double> inp)
 {

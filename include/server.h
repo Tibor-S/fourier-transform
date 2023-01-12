@@ -1,5 +1,5 @@
 #include <winsock2.h>
-namespace Fourier
+namespace Oscilloscope
 {
   int server();
   int callback(SOCKET sck);

@@ -4,10 +4,10 @@
 #include <stdio.h>
 #include "server.h"
 #include <ctime>
-using namespace Fourier;
+using namespace Oscilloscope;
 using namespace std;
 
-int Fourier::server()
+int Oscilloscope::server()
 {
   int iResult = 0;
 
@@ -79,7 +79,7 @@ int Fourier::server()
   return 0;
 }
 
-int Fourier::callback(SOCKET sck)
+int Oscilloscope::callback(SOCKET sck)
 {
   sockaddr addrOut;
   int addrLen = sizeof(addrOut);

@@ -7,8 +7,9 @@
 #include "dft.h"
 #include "audioin.h"
 #include "ext.h"
+// #include "interface.h"
 using namespace std;
-using namespace Fourier;
+using namespace Oscilloscope;
 
 double sample(double x, vector<double> freq)
 {
@@ -26,7 +27,7 @@ int main()
   srand(time(0));
   ofstream file;
 
-  Fourier::DFT dft;
+  Oscilloscope::DFT dft;
 
   int N = 1000;
   int nF = 1;
@@ -70,6 +71,8 @@ int main()
   vecToFile("ext_complex_inv.txt", dft.inv(freq));
 
   cout << micin();
+
+  // cout << window();
 
   return 0;
 }

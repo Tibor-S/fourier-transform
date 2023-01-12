@@ -3,8 +3,8 @@
 #include <windows.h>
 #include <iostream>
 #include <vector>
-#include <portaudio.h>
-using namespace Fourier;
+#include "Portaudio/portaudio.h"
+using namespace Oscilloscope;
 using namespace std;
 
 class Manager
@@ -41,14 +41,14 @@ int callback(
     man->lbuffer.push_back(*in++);
     man->rbuffer.push_back(*in++);
   }
-  if (man->frame_c > 48000)
+  if (man->frame_c > 5 * 48000)
   {
     return paComplete;
   }
   return paContinue;
 }
 
-int Fourier::micin()
+int Oscilloscope::micin()
 {
   string devname = "Line In (Realtek(R) Audio)";
 

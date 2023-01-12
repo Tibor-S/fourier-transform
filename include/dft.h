@@ -3,7 +3,7 @@
 #include <vector>
 #define _USE_MATH_DEFINES
 
-namespace Fourier
+namespace Oscilloscope
 {
   class DFT
   {
