@@ -63,12 +63,12 @@ int main()
     imagFreq.push_back(imag(f));
   }
 
-  vecToFile("org_freq.txt", oFreq);
-  vecToFile("ext_complex_freq.txt", freq);
-  vecToFile("ext_real_freq.txt", realFreq);
-  vecToFile("ext_imag_freq.txt", imagFreq);
-  vecToFile("inp.txt", inp);
-  vecToFile("ext_complex_inv.txt", dft.inv(freq));
+  vecToFile("log/org_freq.log", oFreq);
+  vecToFile("log/ext_complex_freq.log", freq);
+  vecToFile("log/ext_real_freq.log", realFreq);
+  vecToFile("log/ext_imag_freq.log", imagFreq);
+  vecToFile("log/inp.log", inp);
+  vecToFile("log/ext_complex_inv.log", dft.inv(freq));
 
   cout << micin();
 

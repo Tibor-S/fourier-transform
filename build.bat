@@ -1,1 +1,1 @@
-g++ src/*.cpp  -o main.exe -I include -lportaudio -L lib/portaudio 
+g++ src/*.cpp  -o main.exe -I include -lportaudio -L lib/portaudio -lwsock32 -lws2_32
