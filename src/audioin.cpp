@@ -146,8 +146,8 @@ int Oscilloscope::micin()
   // cout << man.buffer.size() << endl;
 
   Pa_Terminate();
-  vecToFile("laudioin.txt", man.lbuffer);
-  vecToFile("raudioin.txt", man.rbuffer);
+  vecToFile("log/laudioin.log", man.lbuffer);
+  vecToFile("log/raudioin.log", man.rbuffer);
 
   return 0;
 }
