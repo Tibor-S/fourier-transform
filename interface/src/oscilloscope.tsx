@@ -1,5 +1,6 @@
 import { randomInt } from 'mathjs';
 import { For, createSignal, createEffect } from 'solid-js';
+import { SocketEl } from './socket';
 
 type Point = { x: number; y: number};
 
@@ -49,11 +50,12 @@ export const PointList = () => {
 
   setInterval(updateT,10)
   createEffect(() => updateCtx(canvas, points()))
-
+  
   return (
     <>
     <div>{t}</div>
     <canvas ref={canvas} width={500} height={500} />
+    <SocketEl />
     </>
   );
 };
